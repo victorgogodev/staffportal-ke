@@ -1,13 +1,14 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import AuthLayout from './layouts/AuthLayout';
+import DashboardLayout from './layouts/DashboardLayout';
 import LoginPage from './pages/LoginPage';
 import ProtectedRoute from './routes/ProtectedRoute';
 
 // Placeholder dashboards - replaced in Phase 3
-const Dashboard = () => <div className="p-8 text-2xl font-bold text-blue-700">Employee Dashboard - Phase 3</div>
-const Manager = () => <div className="p-8 text-2xl font-bold text-purple-700">Manager Dashboard - Phase 3</div>
-const HR = () => <div className="p-8 text-2xl font-bold text-green-700">HR Dashboard - Phase 3</div>
-const Admin = () => <div className="p-8 text-2xl font-bold text-red-700">Admin Dashboard - Phase 3</div>
+const EmployeeDashboard = () => <div className="text-2xl font-bold text-blue-700">Employee Dashboard</div>
+const ManagerDashboard = () => <div className="text-2xl font-bold text-purple-700">Manager Dashboard</div>
+const HRDashboard = () => <div className="text-2xl font-bold text-green-700">HR Dashboard</div>
+const AdminDashboard = () => <div className="text-2xl font-bold text-red-700">Admin Dashboard</div>
 
 const App = () => {
   return (
@@ -18,12 +19,14 @@ const App = () => {
           <Route path="/login" element={<LoginPage />} />
         </Route>
 
-        {/* Protected routes */}
+        {/* Protected routes - all dashboard routes share DashboardLayout */}
         <Route element={<ProtectedRoute />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/manager" element={<Manager />} />
-          <Route path="/hr" element={<HR />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route element={<DashboardLayout />}>
+            <Route path="/dashboard" element={<EmployeeDashboard />} />
+            <Route path="/manager" element={<ManagerDashboard />} />
+            <Route path="/hr" element={<HRDashboard />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+          </Route>
         </Route>
 
         {/* Default redirect */}
