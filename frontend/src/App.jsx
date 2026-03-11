@@ -6,7 +6,7 @@ import ProtectedRoute from './routes/ProtectedRoute';
 
 // Placeholder dashboards - replaced in Phase 3
 import EmployeeDashboard from './pages/EmployeeDashboard';
-const ManagerDashboard = () => <div className="text-2xl font-bold text-purple-700">Manager Dashboard</div>
+import ManagerDashboard from './pages/ManagerDashboard';
 const HRDashboard = () => <div className="text-2xl font-bold text-green-700">HR Dashboard</div>
 const AdminDashboard = () => <div className="text-2xl font-bold text-red-700">Admin Dashboard</div>
 
