@@ -8,7 +8,7 @@ const EmployeeDashboard = () => {
       <div className="grid grid-cols-4 gap-4">
         <StatCard icon="📅" number="18" label="Leave Days Left" bg="bg-blue-50" textColor="text-blue-700" />
         <StatCard icon="✅" number="3" label="Approved" bg="bg-green-50" textColor="text-green-700" />
-        <StatCard icon="⌛" number="1" label="Pending" bg="bg-amber-50" textColor="text-amber-700" />
+        <StatCard icon="⏳" number="1" label="Pending" bg="bg-amber-50" textColor="text-amber-700" />
         <StatCard icon="📄" number="6" label="Payslips" bg="bg-gray-50" textColor="text-gray-700" />
       </div>
 
