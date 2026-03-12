@@ -8,7 +8,7 @@ import ProtectedRoute from './routes/ProtectedRoute';
 import EmployeeDashboard from './pages/EmployeeDashboard';
 import ManagerDashboard from './pages/ManagerDashboard';
 import HRDashboard from './pages/HRDashboard';
-const AdminDashboard = () => <div className="text-2xl font-bold text-red-700">Admin Dashboard</div>
+import AdminDashboard from './pages/AdminDashboard';
 
 const App = () => {
   return (
