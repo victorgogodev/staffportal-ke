@@ -3,17 +3,17 @@ import AuthLayout from './layouts/AuthLayout';
 import DashboardLayout from './layouts/DashboardLayout';
 import LoginPage from './pages/LoginPage';
 import ProtectedRoute from './routes/ProtectedRoute';
-
-// Placeholder dashboards - replaced in Phase 3
 import EmployeeDashboard from './pages/EmployeeDashboard';
 import ManagerDashboard from './pages/ManagerDashboard';
 import HRDashboard from './pages/HRDashboard';
 import AdminDashboard from './pages/AdminDashboard';
+import ProfilePage from './pages/ProfilePage'
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        
         {/* Public routes */}
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<LoginPage />} />
@@ -26,6 +26,7 @@ const App = () => {
             <Route path="/manager" element={<ManagerDashboard />} />
             <Route path="/hr" element={<HRDashboard />} />
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Route>
         </Route>
 
