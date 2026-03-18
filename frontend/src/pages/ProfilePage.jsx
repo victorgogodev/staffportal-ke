@@ -1,8 +1,9 @@
+import { getMe, updateMe } from '../services/userService';
 import { useEffect, useState } from 'react';
 import useAuthStore from '../store/authStore';
 
 const ProfilePage = () => {
-  const user = useAuthStore((state) => state.user);
+  const { user, setUser } = useAuthStore((state) => state);
 
   const [form, setForm] = useState({
     firstName: user?.firstName || '',
@@ -23,17 +24,24 @@ const ProfilePage = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (user) {
-      setForm({
-        firstName: user.firstName || '',
-        lastName: user.lastName || '',
-        email: user.email || '',
-        phone: user.phone || '',
-        dateOfBirth: user.dateOfBirth || '',
-        address: user.address || '',
-      });
+    const fetchProfile = async () => {
+      try {
+        const freshUser = await getMe();
+        setUser(freshUser);
+        setForm({
+          firstName: freshUser.firstName || '',
+          lastName: freshUser.lastName || '',
+          email: freshUser.email || '',
+          phone: freshUser.phone || '',
+          dateOfBirth: freshUser.dateOfBirth || '',
+          address: freshUser.address || ''
+        });
+      } catch (err) {
+        console.error('Failed to fetch profile', err);
+      }
     }
-  }), [user];
+    fetchProfile();
+  }, []);
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -47,10 +55,15 @@ const ProfilePage = () => {
   const handleSave = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // TODO Phase 3 backend: await api.patch('/users/me', form);
-    await new Promise((r) => setTimeout(r, 600)); // simulate network
-    setLoading(false);
-    setSaved(true);
+    try {
+      const updated = await updateMe(form);
+      setUser(updated);
+      setSaved(true);
+    } catch (err) {
+      console.error('Failed to update profile:', err);
+    } finally {
+      setLoading(false);
+    }
   }
 
   const initials = `${user?.firstName?.[0] || ''}${user?.lastName?.[0] || ''}`
