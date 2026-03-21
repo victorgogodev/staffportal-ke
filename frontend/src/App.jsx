@@ -7,13 +7,16 @@ import EmployeeDashboard from './pages/EmployeeDashboard';
 import ManagerDashboard from './pages/ManagerDashboard';
 import HRDashboard from './pages/HRDashboard';
 import AdminDashboard from './pages/AdminDashboard';
-import ProfilePage from './pages/ProfilePage'
+import ProfilePage from './pages/ProfilePage';
+import LeaveRequestForm from './pages/LeaveRequestForm';
+import LeaveHistory from './pages/LeaveHistory';
+import LeaveApprovals from './pages/LeaveApprovals';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        
+
         {/* Public routes */}
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<LoginPage />} />
@@ -27,6 +30,9 @@ const App = () => {
             <Route path="/hr" element={<HRDashboard />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/leave" element={<LeaveRequestForm />} />
+            <Route path="/leave/history" element={<LeaveHistory />} />
+            <Route path="/leave/approvals" element={<LeaveApprovals />} />
           </Route>
         </Route>
 

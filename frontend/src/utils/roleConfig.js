@@ -5,7 +5,9 @@ import {
   FileText,
   Megaphone,
   ClipboardList,
-  Settings
+  Settings,
+  History,
+  Search
 } from 'lucide-react';
 
 const NAV_ITEMS = [
@@ -19,6 +21,12 @@ const NAV_ITEMS = [
     label: 'My Leave',
     path: '/leave',
     icon: CalendarDays,
+    allowedRoles: ['EMPLOYEE', 'MANAGER', 'HR', 'ADMIN']
+  },
+  {
+    label: 'Leave History',
+    path: '/leave/history',
+    icon: History,
     allowedRoles: ['EMPLOYEE', 'MANAGER', 'HR', 'ADMIN']
   },
   {
@@ -48,7 +56,7 @@ const NAV_ITEMS = [
   {
     label: 'Audit Log',
     path: '/audit',
-    icon: ClipboardList,
+    icon: Search,
     allowedRoles: ['HR', 'ADMIN']
   },
   {
