@@ -63,4 +63,25 @@ const updateMe = async (req, res) => {
   }
 }
 
-module.exports = { getMe, updateMe }
+// GET /api/users/all - all users(HR/Admin only)
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await prisma.user.findMany({
+      orderBy: { firstName: 'asc' },
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        email: true,
+        role: true,
+        department: true
+      }
+    });
+    res.json(users);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error.' });
+  }
+}
+
+module.exports = { getMe, updateMe, getAllUsers }
