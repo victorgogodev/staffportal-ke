@@ -7,7 +7,8 @@ import {
   ClipboardList,
   Settings,
   History,
-  Search
+  Search,
+  Upload
 } from 'lucide-react';
 
 const NAV_ITEMS = [
@@ -46,6 +47,12 @@ const NAV_ITEMS = [
     path: '/payslips',
     icon: FileText,
     allowedRoles: ['EMPLOYEE', 'MANAGER', 'HR', 'ADMIN']
+  },
+  {
+    label: 'Upload Payslips',
+    path: '/payslips/upload',
+    icon: Upload,
+    allowedRoles: ['HR', 'ADMIN']
   },
   {
     label: 'Announcements',

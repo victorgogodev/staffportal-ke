@@ -11,6 +11,8 @@ import ProfilePage from './pages/ProfilePage';
 import LeaveRequestForm from './pages/LeaveRequestForm';
 import LeaveHistory from './pages/LeaveHistory';
 import LeaveApprovals from './pages/LeaveApprovals';
+import MyPayslips from './pages/MyPayslips';
+import PayslipUpload from './pages/PayslipUpload';
 
 const App = () => {
   return (
@@ -33,6 +35,8 @@ const App = () => {
             <Route path="/leave" element={<LeaveRequestForm />} />
             <Route path="/leave/history" element={<LeaveHistory />} />
             <Route path="/leave/approvals" element={<LeaveApprovals />} />
+            <Route path="/payslips" element={<MyPayslips />} />
+            <Route path="/payslips/upload" element={<PayslipUpload />} />
           </Route>
         </Route>
 
