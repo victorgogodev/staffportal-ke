@@ -15,22 +15,24 @@ enum Role {
 }
 
 model User {
-  id           String   @id @default(uuid())
-  firstName    String
-  lastName     String
-  email        String   @unique
-  passwordHash String
-  role         Role     @default(EMPLOYEE)
-  department   String?
-  jobTitle     String?
-  phone        String?
-  address      String?
-  employeeId   String?  @unique
-  joinedAt     DateTime?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  LeaveStatus  Leave[]
-  payslips     Payslip[]
+  id            String   @id @default(uuid())
+  firstName     String
+  lastName      String
+  email         String   @unique
+  passwordHash  String
+  role          Role     @default(EMPLOYEE)
+  department    String?
+  jobTitle      String?
+  phone         String?
+  address       String?
+  employeeId    String?  @unique
+  joinedAt      DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  LeaveStatus   Leave[]
+  payslips      Payslip[]
+  announcements Announcement[]
+  auditLogs     AuditLog[]
 }
 
 enum LeaveType {
@@ -72,4 +74,24 @@ model Payslip {
   createdAt   DateTime  @default(now())
 
   user        User      @relation(fields: [userId], references: [id])
+}
+
+model Announcement {
+  id        String   @id @default(uuid())
+  title     String
+  body      String
+  createdBy String
+  createdAt DateTime @default(now())
+
+  author    User     @relation(fields: [createdBy], references: [id])
+}
+
+model AuditLog {
+  id        String    @id @default(uuid())
+  userId    String?
+  action    String
+  detail    String?
+  createdAt DateTime  @default(now())
+
+  user      User?     @relation(fields: [userId], references: [id])
 }
