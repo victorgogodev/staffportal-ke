@@ -58,7 +58,9 @@ const deleteAnnouncement = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const announcement = await prisma.announcement.findMany({ where: { id } });
+    const announcement = await prisma.announcement.findUnique({
+      where: { id }
+    });
 
     if (!announcement) {
       return res.status(404).json({ message: 'Announcement not found.' });
