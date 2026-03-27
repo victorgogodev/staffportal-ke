@@ -13,38 +13,41 @@ import LeaveHistory from './pages/LeaveHistory';
 import LeaveApprovals from './pages/LeaveApprovals';
 import MyPayslips from './pages/MyPayslips';
 import PayslipUpload from './pages/PayslipUpload';
+import Announcements from './pages/Announcements';
+import AuditLog from './pages/AuditLog';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-
         {/* Public routes */}
         <Route element={<AuthLayout />}>
-          <Route path="/login" element={<LoginPage />} />
+          <Route path='/login' element={<LoginPage />} />
         </Route>
 
         {/* Protected routes - all dashboard routes share DashboardLayout */}
         <Route element={<ProtectedRoute />}>
           <Route element={<DashboardLayout />}>
-            <Route path="/dashboard" element={<EmployeeDashboard />} />
-            <Route path="/manager" element={<ManagerDashboard />} />
-            <Route path="/hr" element={<HRDashboard />} />
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/leave" element={<LeaveRequestForm />} />
-            <Route path="/leave/history" element={<LeaveHistory />} />
-            <Route path="/leave/approvals" element={<LeaveApprovals />} />
-            <Route path="/payslips" element={<MyPayslips />} />
-            <Route path="/payslips/upload" element={<PayslipUpload />} />
+            <Route path='/dashboard' element={<EmployeeDashboard />} />
+            <Route path='/manager' element={<ManagerDashboard />} />
+            <Route path='/hr' element={<HRDashboard />} />
+            <Route path='/admin' element={<AdminDashboard />} />
+            <Route path='/profile' element={<ProfilePage />} />
+            <Route path='/leave' element={<LeaveRequestForm />} />
+            <Route path='/leave/history' element={<LeaveHistory />} />
+            <Route path='/leave/approvals' element={<LeaveApprovals />} />
+            <Route path='/payslips' element={<MyPayslips />} />
+            <Route path='/payslips/upload' element={<PayslipUpload />} />
+            <Route path='/announcements' element={<Announcements />} />
+            <Route path='/audit' element={<AuditLog />} />
           </Route>
         </Route>
 
         {/* Default redirect */}
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path='*' element={<Navigate to='/login' replace />} />
       </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
