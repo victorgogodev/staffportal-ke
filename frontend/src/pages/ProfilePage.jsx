@@ -66,7 +66,7 @@ const ProfilePage = () => {
     }
   };
 
-  const initials = `${user?.firstName?.[0] || ''}${user?.lastName?.[0] || ''}`;
+  const initials = `${user?.firstName?.[0]?.toUpperCase() || ''}${user?.lastName?.[0]?.toUpperCase() || ''}`;
 
   const roleStyles = {
     EMPLOYEE: 'bg-blue-100 text-blue-700',
@@ -175,6 +175,10 @@ const ProfilePage = () => {
                     value={form.phone}
                     onChange={handleChange}
                     placeholder='+254 7XX XXX XXX'
+                    maxLength={10}
+                    onKeyPress={(e) => {
+                      if (!/[0-9]/.test(e.key)) e.preventDefault();
+                    }}
                     className='w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500'
                   />
                 </div>
