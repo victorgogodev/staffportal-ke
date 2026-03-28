@@ -15,6 +15,7 @@ import MyPayslips from './pages/MyPayslips';
 import PayslipUpload from './pages/PayslipUpload';
 import Announcements from './pages/Announcements';
 import AuditLog from './pages/AuditLog';
+import Employees from './pages/Employees';
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
             <Route path='/payslips/upload' element={<PayslipUpload />} />
             <Route path='/announcements' element={<Announcements />} />
             <Route path='/audit' element={<AuditLog />} />
+            <Route path='/employees' element={<Employees />} />
           </Route>
         </Route>
 
