@@ -76,9 +76,9 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className='flex gap-5'>
+    <div className='flex flex-col md:flex-row gap-5'>
       {/* ── Left panel ───────────────────────────────── */}
-      <div className='w-52 shrink-0'>
+      <div className='w-full md:w-52 shrink-0'>
         <div className='bg-white rounded-xl border border-gray-200 p-5 flex flex-col items-center text-center'>
           {/* Avatar */}
           <div className='w-20 h-20 rounded-full bg-blue-600 flex items-center justify-center text-white text-2xl font-bold mb-3'>
