@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import Topbar from '../components/Topbar';
@@ -16,32 +17,38 @@ const PAGE_TITLES = {
   '/payslips': 'My payslips',
   '/announcements': 'Announcements',
   '/audit': 'Audit Log'
-}
+};
 
 const DashboardLayout = () => {
   const { pathname } = useLocation();
-  const title = PAGE_TITLES[pathname] || 'StaffPortal KE'
+  const title = PAGE_TITLES[pathname] || 'StaffPortal KE';
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className='flex h-screen bg-gray-50 overflow-hidden'>
+      {/* Mobile backdrop */}
+      {sidebarOpen && (
+        <div
+          className='fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden'
+          onClick={() => setSidebarOpen(false)}
+        ></div>
+      )}
 
-      {/* Fixed sidebar */}
-      <Sidebar />
+      {/* Sidebar */}
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col ml-56 overflow-hidden">
-
+      <div className='flex-1 flex flex-col md:ml-56 overflow-hidden'>
         {/* Topbar */}
-        <Topbar title={title} />
+        <Topbar title={title} onMenuClick={() => setSidebarOpen(true)} />
 
         {/* Scrollable page content */}
-        <main className="flex-1 overflow-y-auto p-6">
+        <main className='flex-1 overflow-y-auto p-4 md:p-6'>
           <Outlet />
         </main>
-
       </div>
     </div>
   );
-}
+};
 
 export default DashboardLayout;
