@@ -109,14 +109,14 @@ const MyPayslips = () => {
                       {MONTHS[p.month - 1]}
                     </td>
                     <td className='py-3 px-3 text-gray-600'>{p.year}</td>
-                    <td className='py-3 px-3 text-gray-400 text-xs'>
+                    <td className='py-3 px-3 text-gray-400 text-xs whitespace-nowrap'>
                       {new Date(p.createdAt).toLocaleDateString('en-KE', {
                         day: 'numeric',
                         month: 'short',
                         year: 'numeric'
                       })}
                     </td>
-                    <td className='py-3 px-3 text-right'>
+                    <td className='py-3 px-3 text-right whitespace-nowrap'>
                       <button
                         onClick={() => handleDownload(p)}
                         disabled={downloading === p.id}

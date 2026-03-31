@@ -36,9 +36,9 @@ const EmployeeDashboard = () => {
       </div>
 
       {/* Two column layout */}
-      <div className='grid grid-cols-3 gap-4'>
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
         {/* Leave balance */}
-        <div className='col-span-2 bg-white rounded-xl border border-gray-200 p-5'>
+        <div className='col-span-1 md:col-span-2 bg-white rounded-xl border border-gray-200 p-5'>
           <h3 className='font-semibold text-gray-800 mb-4'>Leave Balance</h3>
           <div className='space-y-3'>
             {[

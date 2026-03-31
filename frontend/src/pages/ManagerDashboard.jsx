@@ -94,12 +94,16 @@ const ManagerDashboard = () => {
                   key={name}
                   className='border-b border-gray-50 hover:bg-gray-50 transition-colors'
                 >
-                  <td className='py-3 px-3 font-medium text-gray-800'>
+                  <td className='py-3 px-3 font-medium text-gray-800 whitespace-nowrap'>
                     {name}
                   </td>
-                  <td className='py-3 px-3 text-gray-600'>{role}</td>
-                  <td className='py-3 px-3 text-gray-600'>{dept}</td>
-                  <td className='py-3 px-3'>
+                  <td className='py-3 px-3 text-gray-600 whitespace-nowrap'>
+                    {role}
+                  </td>
+                  <td className='py-3 px-3 text-gray-600 whitespace-nowrap'>
+                    {dept}
+                  </td>
+                  <td className='py-3 px-3 whitespace-nowrap'>
                     <span
                       className={`inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full
                      ${status === 'Active' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`}
@@ -107,7 +111,7 @@ const ManagerDashboard = () => {
                       {status === 'Active' ? '●' : '○'} {status}
                     </span>
                   </td>
-                  <td className='py-3 px-3'>
+                  <td className='py-3 px-3 whitespace-nowrap'>
                     {pending > 0 ? (
                       <span className='bg-red-100 text-red-700 text-xs font-bold px-2 py-0.5 rounded-full'>
                         {pending} pending

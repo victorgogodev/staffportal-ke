@@ -49,10 +49,12 @@ const Employees = () => {
   return (
     <div className='space-y-4'>
       {/* Header */}
-      <div className='flex items-center justify-between'>
-        <div>
+      <div className='flex items-center justify-between grid grid-cols-1 lg:grid-cols-3 gap-4'>
+        <div className='flex items-center justify-between mb-4'>
           <h2 className='text-lg font-semibold text-gray-800'>Employees</h2>
-          <p className='text-sm text-gray-400'>{employees.length} total</p>
+          <p className='text-sm text-gray-400 bg-gray-100 px-2 py-1 rounded-full'>
+            {employees.length} employees
+          </p>
         </div>
         <input
           value={search}
@@ -99,18 +101,20 @@ const Employees = () => {
                           {emp.firstName?.[0]?.toUpperCase()}
                           {emp.lastName?.[0]?.toUpperCase()}
                         </div>
-                        <span className='font-medium text-gray-800'>
+                        <span className='font-medium text-gray-800 whitespace-nowrap'>
                           {emp.firstName} {emp.lastName}
                         </span>
                       </div>
                     </td>
-                    <td className='py-3 px-3 text-gray-500'>{emp.email}</td>
-                    <td className='py-3 px-3 text-gray-600'>
+                    <td className='py-3 px-3 text-gray-500 whitespace-nowrap'>
+                      {emp.email}
+                    </td>
+                    <td className='py-3 px-3 text-gray-600 whitespace-nowrap'>
                       {emp.department || '—'}
                     </td>
                     <td className='py-3 px-3'>
                       <span
-                        className={`text-xs font-semibold px-2 py-0.5 rounded-full ${ROLE_STYLES[emp.role]}`}
+                        className={`text-xs font-semibold px-2 py-0.5 rounded-full whitespace-nowrap ${ROLE_STYLES[emp.role]}`}
                       >
                         {emp.role}
                       </span>

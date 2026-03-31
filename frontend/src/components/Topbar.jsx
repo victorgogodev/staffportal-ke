@@ -1,6 +1,7 @@
 import RoleBadge from './RoleBadge';
 import useAuthStore from '../store/authStore';
 import { formatFullDate } from '../utils/formatDate';
+import NotificationBell from './NotificationBell';
 
 const Topbar = ({ title, onMenuClick }) => {
   const user = useAuthStore((state) => state.user);
@@ -37,6 +38,7 @@ const Topbar = ({ title, onMenuClick }) => {
 
       {/* Right - user info */}
       <div className='flex items-center gap-2 md:gap-3'>
+        <NotificationBell />
         <RoleBadge role={user?.role} />
         <div className='text-right hidden md:block'>
           <p className='text-sm font-semibold text-gray-700'>

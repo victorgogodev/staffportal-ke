@@ -78,7 +78,7 @@ const AuditLog = () => {
                     key={log.id}
                     className='border-b border-gray-50 hover:bg-gray-50 transition-colors'
                   >
-                    <td className='py-3 px-3 text-gray-400 text-xs font-mono'>
+                    <td className='py-3 px-3 text-gray-400 text-xs font-mono whitespace-nowrap'>
                       {new Date(log.createdAt).toLocaleString('en-KE', {
                         day: 'numeric',
                         month: 'short',
@@ -86,7 +86,7 @@ const AuditLog = () => {
                         minute: '2-digit'
                       })}
                     </td>
-                    <td className='py-3 px-3'>
+                    <td className='py-3 px-3 whitespace-nowrap'>
                       {log.user ? (
                         <span className='font-medium text-gray-800'>
                           {log.user.firstName} {log.user.lastName}
@@ -95,14 +95,14 @@ const AuditLog = () => {
                         <span className='text-gray-400'>—</span>
                       )}
                     </td>
-                    <td className='py-3 px-3'>
+                    <td className='py-3 px-3 whitespace-nowrap'>
                       <span
                         className={`text-xs font-semibold px-2 py-0.5 rounded-full font-mono ${ACTION_STYLES[log.action] || 'bg-gray-100 text-gray-700'}`}
                       >
                         {log.action}
                       </span>
                     </td>
-                    <td className='py-3 px-3 text-gray-500 text-xs'>
+                    <td className='py-3 px-3 text-gray-500 text-xs whitespace-nowrap'>
                       {log.detail || '—'}
                     </td>
                   </tr>

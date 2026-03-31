@@ -124,15 +124,17 @@ const HRDashboard = () => {
               ].map(({ name, dept, role, status, joined }) => (
                 <tr
                   key={name}
-                  className='border-b border-gray-50 hover:bg-gray-50 transition colors'
+                  className='border-b border-gray-50 hover:bg-gray-50 transition colors whitespace-nowrap'
                 >
-                  <td className='py-3 px-3 font-medium text-gray-800'>
+                  <td className='py-3 px-3 font-medium text-gray-800 whitespace-nowrap'>
                     {name}
                   </td>
-                  <td className='py-3 px-3 text-gray-600'>{dept}</td>
+                  <td className='py-3 px-3 text-gray-600 whitespace-nowrap'>
+                    {dept}
+                  </td>
                   <td className='py-3 px-3'>
                     <span
-                      className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
+                      className={`text-xs font-semibold px-2 py-0.5 rounded-full whitespace-nowrap ${
                         role === 'ADMIN'
                           ? 'bg-red-100 text-red-700'
                           : role === 'HR'
@@ -148,13 +150,15 @@ const HRDashboard = () => {
                   <td className='py-3 px-3'>
                     <span
                       className={`inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full
-                  ${status === 'Active' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}
+                  ${status === 'Active' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700 whitespace-nowrap'}
                   `}
                     >
                       {status === 'Active' ? '●' : '○'} {status}
                     </span>
                   </td>
-                  <td className='py-3 px-3 text-gray-500'>{joined}</td>
+                  <td className='py-3 px-3 text-gray-500 whitespace-nowrap'>
+                    {joined}
+                  </td>
                 </tr>
               ))}
             </tbody>
