@@ -54,6 +54,8 @@ staffportal-ke/
 │   ├── uploads/               # Multer file storage — gitignored
 │   ├── nodemon.json           # Ignores uploads/ to prevent restart loop
 │   └── server.js              # Express entry point
+├── .githooks/
+│   └── pre-push               # blocks direct pushes to main/develop (set core.hooksPath .githooks per clone)
 └── AGENT.md                   # This file
 ```
 
@@ -68,6 +70,8 @@ feature/*   → active work, merge to develop when complete
 ```
 
 **Rule:** Never suggest committing or merging directly to `main` mid-project.
+
+**Branch protection (two layers).** Direct pushes to `main` and `develop` are blocked by (1) a local `pre-push` hook at `.githooks/pre-push` — run `git config core.hooksPath .githooks` once per clone or it won't fire, and `git push --no-verify` overrides a one-off; and (2) a server-side GitHub **ruleset** (`protect main + develop`, Active) that requires a pull request and blocks force-pushes and deletions. The ruleset genuinely enforces here because this repo is **public** — unlike the private `pawahr` / `pawahr-landing` repos, where rulesets need a Team org and only the local hook applies. The hook fires first (client-side, pre-push); the ruleset is the backstop for fresh clones without `core.hooksPath` set, other machines, or edits made through the GitHub web UI.
 
 ---
 
