@@ -121,23 +121,25 @@ const LeaveApprovals = () => {
               key={leave.id}
               className='border-b border-gray-50 hover:bg-gray-50 transition-colors'
             >
-              <td className='py-3 px-3 font-medium text-gray-800'>
+              <td className='py-3 px-3 font-medium text-gray-800 whitespace-nowrap'>
                 {leave.user?.firstName} {leave.user?.lastName}
                 <p className='text-xs text-gray-400 font-normal'>
                   {leave.user?.department}
                 </p>
               </td>
-              <td className='py-3 px-3 text-gray-600'>
+              <td className='py-3 px-3 text-gray-600 whitespace-nowrap'>
                 {TYPE_LABELS[leave.type]}
               </td>
-              <td className='py-3 px-3 text-gray-600'>
+              <td className='py-3 px-3 text-gray-600 whitespace-nowrap'>
                 {formatShortDate(leave.startDate)} -{' '}
                 {formatShortDate(leave.endDate)}
               </td>
-              <td className='py-3 px-3 text-gray-600'>{leave.days}</td>
+              <td className='py-3 px-3 text-gray-600 whitespace-nowrap'>
+                {leave.days}
+              </td>
               <td className='py-3 px-3'>
                 <span
-                  className={`text-xs font-semibold px-2 py-0.5 rounded-full ${STATUS_STYLES[leave.status]}`}
+                  className={`text-xs font-semibold px-2 py-0.5 rounded-full whitespace-nowrap ${STATUS_STYLES[leave.status]}`}
                 >
                   {leave.status}
                 </span>
@@ -147,7 +149,7 @@ const LeaveApprovals = () => {
                   <div className='flex gap-2'>
                     <button
                       onClick={() => handleApprove(leave.id)}
-                      className='bg-green-100 hover:bg-green-200 text-green-700 text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors'
+                      className='bg-green-100 hover:bg-green-200 text-green-700 text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap'
                     >
                       ✓ Approve
                     </button>
@@ -156,7 +158,7 @@ const LeaveApprovals = () => {
                         setRejectModal(leave.id);
                         setActionError('');
                       }}
-                      className='bg-red-100 hover:bg-red-200 text-red-700 text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors'
+                      className='bg-red-100 hover:bg-red-200 text-red-700 text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap'
                     >
                       ✗ Reject
                     </button>
@@ -164,7 +166,7 @@ const LeaveApprovals = () => {
                 </td>
               )}
               {!showActions && (
-                <td className='py-3 px-3 text-gray-400 text-xs'>
+                <td className='py-3 px-3 text-gray-400 text-xs whitespace-nowrap'>
                   {leave.reviewNote || '—'}
                 </td>
               )}

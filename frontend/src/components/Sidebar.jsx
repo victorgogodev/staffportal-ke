@@ -50,7 +50,7 @@ const Sidebar = ({ isOpen, onClose }) => {
             <li key={path}>
               <NavLink
                 to={path}
-                end={path === '/leave'}
+                end={path === '/leave' || path === '/payslips'}
                 onClick={onClose}
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${

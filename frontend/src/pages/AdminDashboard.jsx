@@ -110,13 +110,15 @@ const AdminDashboard = () => {
                   key={`${time}-${user}`}
                   className={`border-b border-gray-50 transition-colors ${fail ? 'bg-red-50 hover:bg-red-100' : 'hover: bg-gray-50'}`}
                 >
-                  <td className='py-3 px-3 text-gray-500 font-mono'>{time}</td>
-                  <td className='py-3 px-3 font-medium text-gray-800'>
+                  <td className='py-3 px-3 text-gray-500 font-mono whitespace-nowrap'>
+                    {time}
+                  </td>
+                  <td className='py-3 px-3 font-medium text-gray-800 whitespace-nowrap'>
                     {user}
                   </td>
                   <td className='py-3 px-3'>
                     <span
-                      className={`text-xs font-semibold px-2 py-0.5 rounded-full font-mono ${
+                      className={`text-xs font-semibold px-2 py-0.5 rounded-full font-mono whitespace-nowrap ${
                         fail
                           ? 'bg-red-100 text-red-700'
                           : action === 'LOGIN'
@@ -133,7 +135,9 @@ const AdminDashboard = () => {
                       {action}
                     </span>
                   </td>
-                  <td className='py-3 px-3 text-gray-600'>{detail}</td>
+                  <td className='py-3 px-3 text-gray-600 whitespace-nowrap'>
+                    {detail}
+                  </td>
                 </tr>
               ))}
             </tbody>

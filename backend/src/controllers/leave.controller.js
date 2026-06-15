@@ -112,6 +112,15 @@ const approveLeave = async (req, res) => {
         reviewedBy: req.user.id
       }
     });
+
+    await prisma.notification.create({
+      data: {
+        userId: leave.userId,
+        title: 'Leave Approved',
+        message: `Your ${leave.days}-day ${leave.type.charAt(0).toUpperCase() + leave.type.slice(1).toLowerCase()} leave request has been approved.`
+      }
+    });
+
     res.json(leave);
   } catch (err) {
     console.error(err);
@@ -140,6 +149,15 @@ const rejectLeave = async (req, res) => {
         reviewNote
       }
     });
+
+    await prisma.notification.create({
+      data: {
+        userId: leave.userId,
+        title: 'Leave Rejected',
+        message: `Your ${leave.days}-day ${leave.type.charAt(0).toUpperCase() + leave.type.slice(1).toLowerCase()} leave request was rejected. Reason: ${reviewNote}`
+      }
+    });
+
     res.json(leave);
   } catch (err) {
     console.error(err);

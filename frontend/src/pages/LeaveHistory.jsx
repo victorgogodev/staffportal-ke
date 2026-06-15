@@ -89,23 +89,28 @@ const LeaveHistory = () => {
                 {leaves.map((leave) => (
                   <tr
                     key={leave.id}
-                    className='border-b border-gray-50 hover:bg-gray-50 transition-colors'
+                    className='border-b border-gray-50 hover:bg-gray-50 transition-colors whitespace-nowrap'
                   >
-                    <td classname='py-3 px-3 font-medium text-gray-800'>
+                    <td classname='py-3 px-3 font-medium text-gray-800 whitespace-nowrap'>
                       {TYPE_LABELS[leave.type]}
                     </td>
-                    <td className='py-3 px-3 text-gray-600'>
+                    <td className='py-3 px-3 text-gray-600 whitespace-nowrap'>
                       {formatShortDate(leave.startDate)}
                     </td>
-                    <td className='py-3 px-3 text-gray-600'>{leave.days}</td>
-                    <td className='py-3 px-3'>
+                    <td className='py-3 px-3 text-gray-600 whitespace-nowrap'>
+                      {formatShortDate(leave.endDate)}
+                    </td>
+                    <td className='py-3 px-3 text-gray-600 whitespace-nowrap'>
+                      {leave.days}
+                    </td>
+                    <td className='py-3 px-3 whitespace-nowrap'>
                       <span
                         className={`text-xs font semibold px-2 py-0.5 rounded-full ${STATUS_STYLES[leave.status]}`}
                       >
                         {leave.status}
                       </span>
                     </td>
-                    <td className='py-3 px-3 text-gray-400 text-xs'>
+                    <td className='py-3 px-3 text-gray-400 text-xs whitespace-nowrap'>
                       {leave.reviewNote || '—'}
                     </td>
                   </tr>
