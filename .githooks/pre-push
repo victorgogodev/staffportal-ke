@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+#
+# pre-push — block direct pushes to protected branches.
+#
+# PawaHR convention: protected branches are updated only via pull-request
+# merge on GitHub, never by a local push. This guards against an accidental
+# `git push origin main` (or pushing any local branch onto remote main, or
+# deleting main).
+#
+# Bypass once, deliberately:   git push --no-verify
+#
+# Install (recommended — version-controlled, survives across repos):
+#     mkdir -p .githooks && mv pre-push .githooks/pre-push
+#     chmod +x .githooks/pre-push
+#     git config core.hooksPath .githooks
+#
+
+# Branches that must never be pushed to directly.
+# Add others per-repo as needed, e.g.: protected_branches=("main" "develop")
+protected_branches=("main" "develop")
+
+remote="$1"
+zero_sha="0000000000000000000000000000000000000000"
+blocked=0
+
+# git feeds one line per ref on stdin: <local ref> <local sha> <remote ref> <remote sha>
+while read -r local_ref local_sha remote_ref remote_sha; do
+    remote_branch="${remote_ref#refs/heads/}"
+    for b in "${protected_branches[@]}"; do
+        if [ "$remote_branch" = "$b" ]; then
+            if [ "$local_sha" = "$zero_sha" ]; then
+                echo "✗ Blocked: refusing to delete protected branch '$b' on '$remote'."
+            else
+                echo "✗ Blocked: refusing to push directly to '$b' on '$remote'."
+            fi
+            blocked=1
+        fi
+    done
+done
+
+if [ "$blocked" -ne 1 ]; then
+    exit 0
+fi
+
+# Suggest a sane next step. If somehow on a protected branch, don't suggest pushing it.
+cur="$(git symbolic-ref --short HEAD 2>/dev/null || true)"
+for b in "${protected_branches[@]}"; do
+    [ "$cur" = "$b" ] && cur=""
+done
+[ -z "$cur" ] && cur="<your-feature-branch>"
+
+echo
+echo "  Protected branches (${protected_branches[*]}) are updated via pull request on GitHub,"
+echo "  not by a local push. Push a feature branch and open a PR instead, e.g.:"
+echo "      git push -u origin $cur"
+echo
+echo "  To override this once (rare, deliberate):  git push --no-verify"
+exit 1
